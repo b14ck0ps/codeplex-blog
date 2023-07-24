@@ -3,8 +3,8 @@
 @section('content')
     <section
         class=" flex flex-col h-screen justify-center p-3 lg:flex-row lg:gap-16 lg:justify-normal lg:items-center lg:p-0">
-        <img class="hidden lg:block w-1/2 h-full object-cover"
-            src="{{ asset('banners/auth-page-banner-left.jpg') }}" alt="banner">
+        <img class="hidden lg:block w-1/2 h-full object-cover" src="{{ asset('banners/auth-page-banner-left.jpg') }}"
+            alt="banner">
         <div class="flex flex-col gap-8 lg:gap-10">
             <h1 class="pl-5 text-3xl lg:text-5xl xl:text-6xl ">
                 Welcome to CodePlex, <br>
@@ -15,16 +15,21 @@
                 <a class="text-blue-500 hover:text-blue-800" href="/registration">Register</a> <br>
                 It takes less than a minute.
             </p>
-            <form class="p-5" action="/registration" method="post">
+
+            @if (session('status'))
+                <div class="bg-red-500 text-white px-5 py-3 mx-5 text-center rounded-sm">
+                    {{ session('status') }}
+                </div>
+            @endif
+
+            <form class="p-5" action="{{ route('login') }}" method="post">
+                @csrf
                 <label for="email">Email</label>
                 <input class="border border-black block p-2 w-full mb-2 lg:mb-5 rounded-sm " type="email" name="email"
                     id="email" placeholder="Enter your email" required>
                 <label for="password">Password</label>
                 <input class=" border border-black block p-2 w-full mb-2 lg:mb-5 rounded-sm" type="password" name="password"
                     id="password" placeholder="Enter your password" required>
-                <label for="password_confirmation">Confirm Password</label>
-                <input class=" border border-black block p-2 w-full mb-2 lg:mb-5 rounded-sm" type="password"
-                    name="password_confirmation" id="password_confirmation" placeholder="Confirm your password" required>
 
                 <a href="/forgot">
                     <p class="text-center underline hover:text-blue-500">Forgot Password?</p>

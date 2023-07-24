@@ -10,19 +10,45 @@
                 Welcome to CodePlex, <br>
                 Create your account.
             </h1>
-            <form class="p-5" action="/registration" method="post">
+            <form class="p-5" action="{{ route('registration_page') }}" method="post">
+                @csrf
+
+                <label for="name">Name</label>
+                <input class="border border-black block p-2 w-full mb-2 lg:mb-5 rounded-sm " type="text" name="name"
+                    id="name" placeholder="Enter your name" required>
+                @if ($errors->has('name'))
+                    <p class="text-red-500">{{ $errors->first('name') }}</p>
+                @endif
+
                 <label for="username">Username</label>
                 <input class="border border-black block p-2 w-full mb-2 lg:mb-5 rounded-sm " type="text" name="username"
                     id="username" placeholder="Enter your username" required>
+                @if ($errors->has('username'))
+                    <p class="text-red-500">{{ $errors->first('username') }}</p>
+                @endif
+
                 <label for="email">Email</label>
                 <input class="border border-black block p-2 w-full mb-2 lg:mb-5 rounded-sm " type="email" name="email"
                     id="email" placeholder="Enter your email" required>
+                @if ($errors->has('email'))
+                    <p class="text-red-500">{{ $errors->first('email') }}</p>
+                @endif
+
                 <label for="password">Password</label>
                 <input class=" border border-black block p-2 w-full mb-2 lg:mb-5 rounded-sm" type="password" name="password"
                     id="password" placeholder="Enter your password" required>
+                @if ($errors->has('password'))
+                    <p class="text-red-500">{{ $errors->first('password') }}</p>
+                @endif
+
                 <label for="password_confirmation">Confirm Password</label>
                 <input class=" border border-black block p-2 w-full mb-2 lg:mb-5 rounded-sm" type="password"
                     name="password_confirmation" id="password_confirmation" placeholder="Confirm your password" required>
+                @if ($errors->has('password_confirmation'))
+                    <p class="text-red-500">{{ $errors->first('password_confirmation') }}</p>
+                @endif
+
+
                 <p>
                     Already have an account?
                     <a class="text-blue-500 hover:text-blue-700" href="/login">Login</a>
