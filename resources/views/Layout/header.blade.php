@@ -8,5 +8,4 @@
 </head>
 
 <body>
-    @yield('content')
 
