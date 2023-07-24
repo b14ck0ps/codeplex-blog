@@ -9,7 +9,9 @@ class loginController extends Controller
 {
     public function index()
     {
-        return view('auth/login');
+        return view('auth/login', [
+            'title' => 'Login',
+        ]);
     }
 
     public function store(Request $request)
