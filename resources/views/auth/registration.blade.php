@@ -6,11 +6,11 @@
         <img class="hidden object-cover w-1/2 h-full lg:block" src="{{ asset('banners/auth-page-banner-left.jpg') }}"
             alt="banner">
         <div class="flex flex-col gap-8 lg:gap-24">
-            <h1 class="pl-5 text-3xl lg:text-5xl xl:text-6xl">
+            <h1 class="pl-5 text-3xl lg:text-4xl 2xl:text-6xl 2xl:mt-5">
                 Welcome to CodePlex, <br>
                 Create your account.
             </h1>
-            <form class="p-5" action="{{ route('registration_page') }}" method="post">
+            <form class="px-5" action="{{ route('registration_page') }}" method="post">
                 @csrf
 
                 <label for="name">Name</label>

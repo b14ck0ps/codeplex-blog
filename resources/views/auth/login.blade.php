@@ -4,7 +4,7 @@
         <img class="hidden object-cover w-1/2 h-full lg:block" src="{{ asset('banners/auth-page-banner-left.jpg') }}"
             alt="banner">
         <div class="flex flex-col gap-8 lg:gap-10">
-            <h1 class="pl-5 text-3xl lg:text-5xl xl:text-6xl ">
+            <h1 class="pl-5 text-3xl lg:text-4xl 2xl:text-6xl ">
                 Welcome to CodePlex, <br>
                 Login to Continue.
             </h1>
