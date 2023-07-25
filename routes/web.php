@@ -2,7 +2,11 @@
 
 use App\Http\Controllers\auth\loginController;
 use App\Http\Controllers\auth\registrationController;
+use App\Http\Controllers\user\aboutController;
 use App\Http\Controllers\user\dashboard;
+use App\Http\Controllers\user\notificationController;
+use App\Http\Controllers\user\util\writePostController;
+use App\Http\Controllers\user\util\searchController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +42,11 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     //------------------ GET ------------------//
     Route::get('/dashboard', [dashboard::class, 'index'])->name('dashboard');
+    Route::get('/about', [aboutController::class, 'index'])->name('about');
+    Route::get('/notification', [notificationController::class, 'index'])->name('notification');
+    Route::get('/writePost', [writePostController::class, 'index'])->name('writePost');
+    Route::get('/search', [searchController::class, 'index'])->name('search');
+
 
     // Logout
     Route::get('/logout', function () {
