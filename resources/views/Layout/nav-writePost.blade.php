@@ -30,7 +30,7 @@
                 @svg('css-profile', ['class' => 'w-6 h-6 inline-block mr-2'])
                 Dashboard
             </a>
-            <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white">
+            <a href="{{ route('setting') }}" class="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white">
                 @svg('go-gear-16', ['class' => 'w-6 h-6 inline-block mr-2'])
                 Setting
             </a>

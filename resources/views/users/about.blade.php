@@ -1,4 +1,4 @@
-@extends('Layout.dashboard.dashboard')
+@extends('Layout.skeleton.dashboard')
 @section('dashboard-content')
     <h1 class="p-5 mt-10 mb-3 font-bold text-center">
         Tell the world about yourself

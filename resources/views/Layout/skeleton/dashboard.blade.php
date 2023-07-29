@@ -21,7 +21,7 @@
             <div class="hidden pl-5 lg:block">
                 <img class="w-24 mb-5 rounded-full" src="{{ asset('images/707.jpg') }}" alt="707">
                 <h3 class="mb-10 text-xl font-bold lg:font-semibold">{{ auth()->user()->name }}</h3>
-                <a class="text-sm text-green-600 hover:text-black" href="/edit">Edit Profile</a>
+                <a class="text-sm text-green-600 hover:text-black" href="/setting">Edit Profile</a>
             </div>
         </div>
     </div>

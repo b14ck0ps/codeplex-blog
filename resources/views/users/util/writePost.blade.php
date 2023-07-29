@@ -1,4 +1,4 @@
-@extends('Layout.dashboard.write')
+@extends('Layout.skeleton.write')
 @section('content')
     <main class="p-3 mt-5 lg:w-3/4 lg:m-auto lg:mt-10">
         <input class="text-4xl focus:outline-none lg:text-5xl" type="text" placeholder="Title" name="title">

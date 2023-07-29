@@ -1,4 +1,4 @@
-@extends('Layout.dashboard.dashboard')
+@extends('Layout.skeleton.dashboard')
 
 @section('dashboard-content')
     <div class="justify-between 2xl:flex">

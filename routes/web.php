@@ -5,6 +5,7 @@ use App\Http\Controllers\auth\registrationController;
 use App\Http\Controllers\user\aboutController;
 use App\Http\Controllers\user\dashboard;
 use App\Http\Controllers\user\notificationController;
+use App\Http\Controllers\user\settingController;
 use App\Http\Controllers\user\util\writePostController;
 use App\Http\Controllers\user\util\searchController;
 use Illuminate\Support\Facades\Auth;
@@ -46,6 +47,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/notification', [notificationController::class, 'index'])->name('notification');
     Route::get('/writePost', [writePostController::class, 'index'])->name('writePost');
     Route::get('/search', [searchController::class, 'index'])->name('search');
+    Route::get('/setting', [settingController::class, 'index'])->name('setting');
+    Route::get('/setting/security', [settingController::class, 'security'])->name('security');
 
 
     // Logout
