@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\auth\loginController;
 use App\Http\Controllers\auth\registrationController;
-use App\Http\Controllers\user\aboutController;
-use App\Http\Controllers\user\dashboard;
+use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\user\notificationController;
 use App\Http\Controllers\user\settingController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\user\util\writePostController;
 use App\Http\Controllers\user\util\searchController;
 use Illuminate\Support\Facades\Auth;
@@ -21,10 +21,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::middleware(['guest'])->group(function () {
     //-------- Auth Routes GET --------//
@@ -42,8 +38,8 @@ Route::middleware(['guest'])->group(function () {
 //-------- Dashboard Routes --------//
 Route::middleware(['auth'])->group(function () {
     //------------------ GET ------------------//
-    Route::get('/dashboard', [dashboard::class, 'index'])->name('dashboard');
-    Route::get('/about', [aboutController::class, 'index'])->name('about');
+    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+    Route::get('/about', [UserController::class, 'about'])->name('about');
     Route::get('/notification', [notificationController::class, 'index'])->name('notification');
     Route::get('/writePost', [writePostController::class, 'index'])->name('writePost');
     Route::get('/search', [searchController::class, 'index'])->name('search');
@@ -57,3 +53,9 @@ Route::middleware(['auth'])->group(function () {
         return redirect()->route('login_page');
     })->name('logout');
 });
+
+//-------- Blog GET --------//
+Route::get('/', [BlogController::class, 'index'])->name('home');
+Route::get('/blog/{id}', [BlogController::class, 'content'])->name('blog.content');
+Route::get('/user/{id}', [UserController::class, 'guestProfile'])->name('guestProfile');
+Route::get('/user/{id}/about', [UserController::class, 'guestProfileAbout'])->name('guestProfile.about');

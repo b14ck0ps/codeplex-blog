@@ -1,6 +1,6 @@
 <nav class="flex items-center justify-between px-5 py-2 border-b-[1px]">
     <div class="flex gap-5">
-        <a href="{{ route('dashboard') }}" class="flex gap-5">
+        <a href="{{ route('home') }}" class="flex gap-5">
             @svg('fas-blog', ['class' => 'w-8 h-8'])
         </a>
         <div class="relative hidden lg:flex lg:items-center">
