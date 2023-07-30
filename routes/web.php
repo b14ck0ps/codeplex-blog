@@ -46,6 +46,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/setting', [settingController::class, 'index'])->name('setting');
     Route::get('/setting/security', [settingController::class, 'security'])->name('security');
 
+    //------------------ POST ------------------//
+    Route::post('/update/email', [settingController::class, 'UpdateEmail'])->name('update.email');
+    Route::post('/update/username', [settingController::class, 'UpdateUsername'])->name('update.username');
+    Route::post('/update/ProfileInfo', [settingController::class, 'UpdateProfileInfo'])->name('update.profile');
+    Route::post('/update/about', [settingController::class, 'UpdateAbout'])->name('update.about');
+    Route::post('/update/password', [settingController::class, 'UpdatePassword'])->name('update.password');
 
     // Logout
     Route::get('/logout', function () {

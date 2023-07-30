@@ -1,7 +1,7 @@
 @extends('Layout.skeleton.setting')
 @section('setting-content')
     <table class="w-full border-separate border-spacing-y-5 md:border-spacing-y-10">
-        <tr data-drawer-target="drawer-bottom-password" data-drawer-show="drawer-bottom-password"
+        <tr class="cursor-pointer" data-drawer-target="drawer-bottom-password" data-drawer-show="drawer-bottom-password"
             data-drawer-placement="bottom" aria-controls="drawer-bottom-password" aria-hidden="true"
             onclick="document.querySelector('#drawer-bottom-password').removeAttribute('hidden')">
             <td class="pr-10 text-sm text-left">Change Password</td>
@@ -23,7 +23,8 @@
         </svg>
         <span class="sr-only">Close menu</span>
     </button>
-    <form action="/setting" method="post">
+    <form action="{{ route('update.password') }}" method="post">
+        @csrf
         <button type="submit"
             class="px-4 py-1 bg-green-500 hover:bg-green-600 absolute top-2.5 right-2.5 inline-flex items-center justify-center rounded-full">save</button>
 
@@ -33,6 +34,9 @@
                 class="border-b-[0.5px] border-black focus: outline-none mt-5 w-full border-opacity-50"
                 name="old_password" value="">
         </div>
+        @if ($errors->has('not_matched'))
+            <span class="text-red-500">{{ $errors->first('not_matched') }}</span>
+        @endif
         <div class="mt-10">
             <h3 class="font-bold ">New Password</h3>
             <input type="password"
@@ -45,6 +49,14 @@
                 class="border-b-[0.5px] border-black focus: outline-none mt-5 w-full border-opacity-50"
                 name="password_confirmation" value="">
         </div>
+        @if ($errors->has('password'))
+            <span class="text-red-500">{{ $errors->first('password') }}</span>
+        @endif
     </form>
-
 </div>
+
+@if ($errors->any())
+    <script>
+        document.querySelector('#drawer-bottom-password').removeAttribute('hidden')
+    </script>
+@endif

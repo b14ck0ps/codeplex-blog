@@ -21,12 +21,9 @@
                 <section>
                     <h1 class="mb-3 text-xl">About:</h1>
                     <p class="py-2 mb-4">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, repellendus! Officiis cum quia enim.
-                        Molestiae quo, laboriosam totam aliquam perferendis perspiciatis, ipsam necessitatibus tempora
-                        maxime
-                        incidunt deleniti! Aut, at culpa?
+                        {{ auth()->user()->about ?? 'You can write about yourself here.' }}
                     </p>
-                    <button data-drawer-target="drawer-bottom-about" data-drawer-show="drawer-bottom-about"
+                    <button class="text-blue-500 hover:text-blue-700" data-drawer-target="drawer-bottom-about" data-drawer-show="drawer-bottom-about"
                         data-drawer-placement="bottom" aria-controls="drawer-bottom-about" aria-hidden="true"
                         onclick="document.querySelector('#drawer-bottom-about').removeAttribute('hidden')">
                         Edit
