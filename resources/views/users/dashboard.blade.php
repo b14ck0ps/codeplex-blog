@@ -4,7 +4,10 @@
     <div class="justify-between 2xl:flex">
         <div class="p-5">
             <div class="flex w-[200px] gap-2">
-                <img class="rounded-full w-7" src="{{ asset('images/707.jpg') }}" alt="707">
+                <div class="mb-5 overflow-hidden rounded-full w-7 h-7">
+                    <img class="object-cover object-center w-full h-full"
+                        src="{{ asset('/storage/' . auth()->user()->profile_photo_path) }}" alt="User Profile Photo">
+                </div>
                 <p>{{ auth()->user()->name }}</p>
             </div>
             <h1 class="my-3 font-bold">Reading List</h1>

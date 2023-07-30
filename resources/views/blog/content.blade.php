@@ -46,10 +46,13 @@
         <form class="pb-10 my-10 border-b-2 border-black border-opacity-20"
             action="{{ route('blog.comment', ['id' => $post->id]) }}" method="POST">
             @csrf
-            <div class="flex items-center gap-2">
-                <img class="w-8 rounded-full" src="{{ asset('images/707.jpg') }}" alt="dp">
+            <div class="flex items-center justify-between gap-2">
+                <div class="w-8 h-8 overflow-hidden rounded-full ">
+                    <img class="object-cover object-center w-full h-full"
+                        src="{{ asset('/storage/' . auth()->user()->profile_photo_path) }}" alt="User Profile Photo">
+                </div>
                 <input name="comment" type="text" placeholder="Write a comment..."
-                    class="w-full p-2 border-2 border-gray-200 rounded-lg">
+                    class="w-10/12 p-2 border-2 border-gray-200 rounded-lg">
                 <button type="submit">
                     @svg('phosphor-arrow-right-thin', 'w-5')
                 </button>
@@ -60,7 +63,11 @@
             <section class="border-b-[1px] border-black border-opacity-10 pb-3 mb-3">
                 <section class="flex justify-between">
                     <div class="flex items-center gap-4">
-                        <img class="w-10 rounded-full" src="{{ asset('images/707.jpg') }}" alt="dp">
+                        <div class="inline-block w-8 h-8 overflow-hidden rounded-full">
+                            <img class="object-cover object-center w-full h-full"
+                                src="{{ asset('/storage/' . $comment->user->profile_photo_path) }}"
+                                alt="User Profile Photo">
+                        </div>
                         <div class="flex flex-col justify-center">
                             <p>{{ $comment->user->name }}</p>
                             <span class="text-sm text-gray-400">{{ $comment->created_at->format('M d, Y') }}</span>

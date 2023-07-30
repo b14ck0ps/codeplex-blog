@@ -7,7 +7,10 @@
                 <section>
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-1">
-                            <img class="w-6 rounded-full" src="{{ asset('images/707.jpg') }}" alt="dp">
+                            <div class="w-6 h-6 overflow-hidden rounded-full">
+                                <img class="object-cover object-center w-full h-full"
+                                    src="{{ asset('/storage/' . auth()->user()->profile_photo_path) }}" alt="User Profile Photo">
+                            </div>
                             <p>Azran Hossain</p>
                         </div>
                         <p>{{ date('M d, Y') }}</p>

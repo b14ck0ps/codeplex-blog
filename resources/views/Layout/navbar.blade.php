@@ -22,9 +22,12 @@
         <div class="max-w-lg mx-auto">
 
             <!-- Dropdown toggle -->
-            <button class="text-sm px-4 py-2.5 text-center inline-flex items-center" type="button"
+            <button class="flex items-start px-4 mt-5 text-sm text-center" type="button"
                 data-dropdown-toggle="dropdown">
-                <img class="w-8 rounded-full" src="{{ asset('images/707.jpg') }}" alt="707">
+                <div class="w-8 h-8 mb-5 overflow-hidden rounded-full">
+                    <img class="object-cover object-center w-full h-full"
+                        src="{{ asset('/storage/' . auth()->user()->profile_photo_path) }}" alt="User Profile Photo">
+                </div>
                 @svg('gmdi-keyboard-arrow-down-s', ['class' => 'w-8 h-8 opacity-70'])
             </button>
 

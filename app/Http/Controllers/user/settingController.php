@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -54,9 +55,35 @@ class settingController extends Controller
     {
         $request->validate([
             'name' => 'required|max:30|regex:/^[a-zA-Z\s]+$/',
+            ''
         ], [
             'name.regex' => 'The name field must only contain letters and spaces.',
         ]);
+
+        if ($request->hasFile('profile-picture')) {
+            $request->validate([
+                'profile-picture' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+            ]);
+
+            $old_profile_picture = User::where('id', Auth::user()->id)->first()->profile_photo_path;
+
+            $uuid = Str::uuid()->toString();
+            // Get the file extension from the uploaded image
+            $extension = $request->file('profile-picture')->getClientOriginalExtension();
+            // Combine the UUID and extension to create the new filename
+            $filename = $uuid . '.' . $extension;
+
+            $profile_picture = $request->file('profile-picture')->storeAs('profile_picture', $filename, 'public');
+
+            User::where('id', Auth::user()->id)->update([
+                'profile_photo_path' => $profile_picture,
+            ]);
+
+            if ($old_profile_picture != 'profile_picture/default.png') {
+                unlink('storage/' . $old_profile_picture);
+            }
+        }
+
 
         User::where('id', Auth::user()->id)->update([
             'name' => $request->name,

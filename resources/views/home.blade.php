@@ -19,7 +19,11 @@
                     <section>
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-1">
-                                <img class="w-6 rounded-full" src="{{ asset('images/707.jpg') }}" alt="dp">
+                                <div class="overflow-hidden rounded-full w-7 h-7">
+                                    <img class="object-cover object-center w-full h-full"
+                                        src="{{ asset('/storage/' . $post->user->profile_photo_path) }}"
+                                        alt="User Profile Photo">
+                                </div>
                                 <p>{{ $post->user->name }}</p>
                             </div>
                             <p>{{ $post->created_at->format('M d, Y') }}</p>

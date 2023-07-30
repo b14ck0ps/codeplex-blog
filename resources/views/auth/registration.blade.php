@@ -10,7 +10,7 @@
                 Welcome to CodePlex, <br>
                 Create your account.
             </h1>
-            <form class="px-5" action="{{ route('registration_page') }}" method="post">
+            <form class="px-5" action="{{ route('registration_page') }}" method="post" enctype="multipart/form-data">
                 @csrf
 
                 <label for="name">Name</label>
@@ -48,12 +48,18 @@
                     <p class="text-red-500">{{ $errors->first('password_confirmation') }}</p>
                 @endif
 
+                <label for="profile-picture">Profile Picture</label>
+                <input class="block w-full p-2 mb-2 border border-black rounded-sm lg:mb-5" type="file"
+                    name="profile-picture" id="profile-picture">
+                @if ($errors->has('profile-picture'))
+                    <p class="text-red-500">{{ $errors->first('profile-picture') }}</p>
+                @endif
 
                 <p>
                     Already have an account?
                     <a class="text-blue-500 hover:text-blue-700" href="/login">Login</a>
                 </p>
-                <button class="w-full px-10 py-2 mt-5 font-semibold text-white bg-black lg:mt-16 hover:text-blue-500"
+                <button class="w-full px-10 py-2 mt-2 font-semibold text-white bg-black lg:mt-16 hover:text-blue-500"
                     type="submit">Register</button>
                 <button class="w-full px-10 py-2 mt-3 font-semibold bg-gray-100 hover:text-blue-500">
                     <div class="flex items-center justify-center gap-2">

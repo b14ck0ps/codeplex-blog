@@ -12,8 +12,12 @@
             aria-controls="drawer-bottom-profileInfo" aria-hidden="true"
             onclick="document.querySelector('#drawer-bottom-profileInfo').removeAttribute('hidden')"">
             <td class="pr-10 text-sm text-left">Profile Info</td>
-            <td class="text-sm text-right text-gray-500">{{ auth()->user()->name }}
-                <img class="inline w-5 ml-5 rounded-full" src="{{ asset('images/707.jpg') }}" alt="707">
+            <td class="flex items-center justify-end gap-2 text-sm text-right text-gray-500">
+                <div>{{ auth()->user()->name }}</div>
+                <div class="inline-block w-8 h-8 overflow-hidden rounded-full">
+                    <img class="object-cover object-center w-full h-full"
+                        src="{{ asset('/storage/' . auth()->user()->profile_photo_path) }}" alt="User Profile Photo">
+                </div>
             </td>
         </tr>
         <tr class="cursor-pointer" data-drawer-target="drawer-bottom-username" data-drawer-show="drawer-bottom-username"
@@ -104,7 +108,7 @@
         </svg>
         <span class="sr-only">Close menu</span>
     </button>
-    <form action="{{ route('update.profile') }}" method="post">
+    <form action="{{ route('update.profile') }}" method="post" enctype="multipart/form-data">
         @csrf
 
         <button type="submit"
@@ -114,9 +118,12 @@
             <h3 class="mb-5 text-xl font-bold">Profile Information</h3>
             <label class="block mb-2 text-sm text-gray-500" for="photo">Photo</label>
             <div class="flex items-center gap-10">
-                <img class="w-20 rounded-full" src="{{ asset('images/707.jpg') }}" alt="">
+                <div class="inline-block overflow-hidden rounded-full w-28 h-28">
+                    <img class="object-cover object-center w-full h-full"
+                        src="{{ asset('/storage/' . auth()->user()->profile_photo_path) }}" alt="User Profile Photo">
+                </div>
                 <div>
-                    <input type="file">
+                    <input type="file" name="profile-picture">
                     <p class="mt-3 text-sm text-gray-500">Recomanded : JPG or PNG, Max 500KB</p>
                 </div>
             </div>
