@@ -4,16 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
 use Illuminate\Support\Str;
+use App\Models\PostComments;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    function index()
+    function index(Request $request)
     {
-        $post = BlogPost::all();
+
+        $post = BlogPost::all()->sortByDesc('created_at');
+        $selected = 'latest';
+
+        if ($request->sortBy == 'oldest') {
+            $post = BlogPost::all()->sortBy('created_at');
+            $selected = 'oldest';
+        }
+
+        if ($request->sortBy == 'likes') {
+            $post = BlogPost::all()->sortByDesc(function ($post) {
+                return $post->likes->count();
+            });
+            $selected = 'likes';
+        }
 
         return view('home', [
             'posts' => $post,
+            'selected' => $selected,
         ]);
     }
 
@@ -24,8 +40,23 @@ class BlogController extends Controller
             return redirect()->route('home');
         }
 
+        $likes = $post->likes->count();
+
+        //check if the user has liked the post
+        $existingLike = $post->likes->where('user_id', auth()->user()->id)->first();
+        if ($existingLike != null) {
+            $existingLike = true;
+        } else {
+            $existingLike = false;
+        }
+
+        $comments = $post->comments->sortByDesc('created_at');
+
         return view('blog.content', [
             'post' => $post,
+            'existingLike' => $existingLike,
+            'likes' => $likes,
+            'comments' => $comments,
         ]);
     }
 
@@ -54,5 +85,58 @@ class BlogController extends Controller
         ]);
 
         return redirect()->route('home');
+    }
+
+    function likePost(Request $request)
+    {
+        $post = BlogPost::find($request->id);
+        if ($post == null) {
+            return redirect()->route('home');
+        }
+
+        $existingLike = $post->likes->where('user_id', auth()->user()->id)->first();
+        if ($existingLike != null) {
+            $existingLike->delete();
+            return redirect()->route('blog.content', ['id' => $post->id]);
+        }
+
+        $post->likes()->create([
+            'user_id' => auth()->user()->id,
+            'blog_post_id' => $post->id,
+        ]);
+
+        return redirect()->route('blog.content', ['id' => $post->id]);
+    }
+
+    function commentPost(Request $request)
+    {
+        $post = BlogPost::find($request->id);
+        if ($post == null) {
+            return redirect()->route('home');
+        }
+
+        $request->validate([
+            'comment' => 'required|max: 1000',
+        ]);
+
+        $post->comments()->create([
+            'user_id' => auth()->user()->id,
+            'blog_post_id' => $post->id,
+            'comment' => $request->comment,
+        ]);
+
+        return redirect()->route('blog.content', ['id' => $post->id]);
+    }
+
+    function deleteComment(Request $request)
+    {
+        $comment = PostComments::find($request->id);
+        if ($comment == null) {
+            return redirect()->route('home');
+        }
+
+        $comment->delete();
+
+        return redirect()->route('blog.content', ['id' => $comment->blog_post_id]);
     }
 }

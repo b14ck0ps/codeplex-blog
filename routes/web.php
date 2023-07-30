@@ -56,6 +56,10 @@ Route::middleware(['auth'])->group(function () {
 
     //-------- Blog POST --------//
     Route::post('/writePost', [BlogController::class, 'storePost'])->name('writePost');
+    Route::post('/blog/{id}/like', [BlogController::class, 'likePost'])->name('blog.like');
+    Route::post('/blog/{id}/comment', [BlogController::class, 'commentPost'])->name('blog.comment');
+
+    Route::delete('/comment', [BlogController::class, 'deleteComment'])->name('blog.comment.delete');
 
     // Logout
     Route::get('/logout', function () {
@@ -69,3 +73,6 @@ Route::get('/', [BlogController::class, 'index'])->name('home');
 Route::get('/blog/{id}', [BlogController::class, 'content'])->name('blog.content');
 Route::get('/user/{id}', [UserController::class, 'guestProfile'])->name('guestProfile');
 Route::get('/user/{id}/about', [UserController::class, 'guestProfileAbout'])->name('guestProfile.about');
+
+//-------- Blog POST --------//
+Route::post('/', [BlogController::class, 'index'])->name('blog.sort');
