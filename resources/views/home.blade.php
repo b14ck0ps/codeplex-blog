@@ -39,7 +39,9 @@
                             </section>
 
                         </div>
-                        <img class="w-36" src="{{ asset('/storage/' . $post->cover) }}" alt="cover">
+                        <div class="h-24 overflow-hidden w-36">
+                            <img class="object-cover object-top h-full" src="{{ asset('/storage/' . $post->cover) }}" alt="cover">
+                        </div>
                     </section>
 
                     <section class="flex gap-5">
