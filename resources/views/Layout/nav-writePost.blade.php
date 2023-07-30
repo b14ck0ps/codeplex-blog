@@ -7,7 +7,7 @@
 
     </div>
     <div class="flex items-center justify-between gap-5 lg:gap-10">
-        <button class="px-4 bg-green-400 rounded-full hover:bg-green-600">
+        <button id="submit_blog_Btn" type="submit" class="px-4 bg-green-400 rounded-full hover:bg-green-600">
             Publish
         </button>
         <a href="{{ route('notification') }}">@svg('carbon-notification', ['class' => 'w-8 h-8 opacity-70 lg:opacity-70 hover:opacity-100'])</a>

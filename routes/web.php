@@ -53,6 +53,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/update/about', [settingController::class, 'UpdateAbout'])->name('update.about');
     Route::post('/update/password', [settingController::class, 'UpdatePassword'])->name('update.password');
 
+
+    //-------- Blog POST --------//
+    Route::post('/writePost', [BlogController::class, 'storePost'])->name('writePost');
+
     // Logout
     Route::get('/logout', function () {
         Auth::logout();
