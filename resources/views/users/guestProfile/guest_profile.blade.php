@@ -1,9 +1,8 @@
 @extends('Layout.skeleton.guest_profile')
 @section('dashboard-content')
     <main class="p-5 m-auto mt-5">
-        <article class="pb-4 border-b-[1px] border-gray-200 mb-5">
-            <!-- This section will be dynamic -->
-            @foreach ($posts as $post)
+        @foreach ($posts as $post)
+            <article class="pb-4 border-b-[1px] border-gray-200 mb-5">
                 <a href="{{ route('guestProfile', ['username' => $user->username]) }}">
                     <section>
                         <div class="flex items-center justify-between">
@@ -42,7 +41,7 @@
                     <a href="/sort?tag=programming" class="p-2 text-sm text-center bg-gray-100 rounded-full">Programming</a>
                     <a href="/sort?tag=Git" class="p-2 text-sm text-center bg-gray-100 rounded-full">Git</a>
                 </div> --}}
-        </article>
+            </article>
         @endforeach
     </main>
 @endsection

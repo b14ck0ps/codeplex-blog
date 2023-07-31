@@ -11,8 +11,11 @@ class UserController extends Controller
 {
     public function dashboard()
     {
+        $posts = User::find(Auth::user()->id)->blogPosts()->orderBy('created_at', 'desc')->get();
+
         return view('users.dashboard', [
             'title' => "Dashboard | " . Auth::user()->name,
+            'posts' => $posts,
         ]);
     }
     public function about()
