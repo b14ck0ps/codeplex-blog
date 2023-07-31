@@ -31,7 +31,7 @@
                     </section>
                 </a>
                 <a href="{{ route('blog.content', ['id' => $post->id]) }}">
-                    <section class="flex items-end justify-between gap-5 mt-4 lg:gap-52">
+                    <section class="flex justify-between gap-5 mt-4 lg:gap-52">
                         <div>
                             <h1 class="text-xl font-bold">{{ $post->title }}</h1>
                             <section class="hidden md:block">
@@ -39,7 +39,7 @@
                             </section>
 
                         </div>
-                        <div class="h-24 overflow-hidden w-36">
+                        <div class="h-24 overflow-hidden ml-full w-36">
                             <img class="object-cover object-top h-full" src="{{ asset('/storage/' . $post->cover) }}"
                                 alt="cover">
                         </div>

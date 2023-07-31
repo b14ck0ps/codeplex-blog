@@ -118,7 +118,7 @@
                 <h3 class="mb-5 text-xl font-bold">Profile Information</h3>
                 <label class="block mb-2 text-sm text-gray-500" for="photo">Photo</label>
                 <div class="flex items-center gap-10">
-                    <div class="inline-block overflow-hidden rounded-full w-28 h-28">
+                    <div class="hidden overflow-hidden rounded-full md:inline-block w-28 h-28">
                         <img class="object-cover object-center w-full h-full"
                             src="{{ asset('/storage/' . auth()->user()->profile_photo_path) }}" alt="User Profile Photo">
                     </div>
