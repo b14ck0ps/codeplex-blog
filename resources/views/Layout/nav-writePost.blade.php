@@ -1,4 +1,4 @@
-<nav class="flex items-center justify-between px-5 py-2 border-b-[1px]">
+<nav class="flex items-center justify-between px-5 border-b-[1px]">
     <div class="flex gap-5">
         <a href="{{ route('home') }}" class="flex gap-5">
             @svg('fas-blog', ['class' => 'w-8 h-8'])
@@ -13,8 +13,7 @@
         <a href="{{ route('notification') }}">@svg('carbon-notification', ['class' => 'w-8 h-8 opacity-70 lg:opacity-70 hover:opacity-100'])</a>
 
         <!-- Dropdown toggle -->
-        <button class="flex items-start px-4 mt-4 text-sm text-center" type="button"
-            data-dropdown-toggle="dropdown">
+        <button class="flex items-start px-4 mt-4 text-sm text-center" type="button" data-dropdown-toggle="dropdown">
             <div class="w-8 h-8 mb-5 overflow-hidden rounded-full ">
                 <img class="object-cover object-center w-full h-full"
                     src="{{ asset('/storage/' . auth()->user()->profile_photo_path) }}" alt="User Profile Photo">

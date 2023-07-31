@@ -69,12 +69,11 @@
             {{ $posts->links() }}
         @endif
     </main>
-@endsection
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('sortSelect').addEventListener('change', function() {
-            document.getElementById('sortForm').submit();
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('sortSelect').addEventListener('change', function() {
+                document.getElementById('sortForm').submit();
+            });
         });
-    });
-</script>
+    </script>
+@endsection
