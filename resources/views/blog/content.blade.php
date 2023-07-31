@@ -2,6 +2,14 @@
 @section('content')
     <main class="p-5 mx-auto sm:w-3/4 ">
         <h1 class="text-3xl font-bold sm:text-5xl">{{ $post->title }}</h1>
+        <a href="{{ route('guestProfile', ['username' => $post->user->username]) }}" class="flex items-center gap-3 mt-5">
+            <div class="w-6 h-6 overflow-hidden rounded-full">
+                <img class="object-cover object-center w-full h-full"
+                    src="{{ asset('/storage/' . $post->user->profile_photo_path) }}" alt="User Profile Photo">
+            </div>
+            <p class="font-semibold">{{ $post->user->name }}</p>
+        </a>
+        <span class="text-sm text-gray-600">Published: {{ $post->created_at->format('M d, Y') }}</span>
         <div class="px-2 py-5 my-10 mb-20 bg-gray-100 rounded-lg">{!! $post->content !!}</div>
         {{-- <img class="w-2/12 mx-auto my-8" src="{{ asset('/storage/' . $post->cover) }}" alt="cover"> --}}
     </main>

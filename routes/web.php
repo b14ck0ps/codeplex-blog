@@ -71,8 +71,8 @@ Route::middleware(['auth'])->group(function () {
 //-------- Blog GET --------//
 Route::get('/', [BlogController::class, 'index'])->name('home');
 Route::get('/blog/{id}', [BlogController::class, 'content'])->name('blog.content');
-Route::get('/user/{id}', [UserController::class, 'guestProfile'])->name('guestProfile');
-Route::get('/user/{id}/about', [UserController::class, 'guestProfileAbout'])->name('guestProfile.about');
+Route::get('/user/{username}', [UserController::class, 'guestProfile'])->name('guestProfile');
+Route::get('/user/{username}/about', [UserController::class, 'guestProfileAbout'])->name('guestProfile.about');
 
 //-------- Blog POST --------//
 Route::post('/', [BlogController::class, 'index'])->name('blog.sort');

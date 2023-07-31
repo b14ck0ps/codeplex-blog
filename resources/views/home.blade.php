@@ -15,7 +15,7 @@
         @foreach ($posts as $post)
             <article class="pb-4 border-b-[1px] border-gray-200 mb-3">
                 <!-- This section will be dynamic -->
-                <a href="{{ route('guestProfile', ['id' => $post->user->id]) }}">
+                <a href="{{ route('guestProfile', ['username' => $post->user->username]) }}">
                     <section>
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-1">
