@@ -2,8 +2,8 @@
 
 @section('dashboard-content')
     @if ($posts->count() != 0)
-        <article class="border-b-[1px] border-gray-200 mb-5 p-5">
-            @foreach ($posts as $post)
+        @foreach ($posts as $post)
+            <article class="border-b-[1px] border-gray-200 p-5">
                 <a href="{{ route('guestProfile', ['username' => auth()->user()->username]) }}">
                     <section>
                         <div class="flex items-center justify-between">
@@ -23,7 +23,9 @@
                     <section class="flex justify-between gap-5 mt-4 lg:gap-52">
                         <div>
                             <h1 class="font-bold">{{ $post->title }}</h1>
-                            <p class="hidden md:block">{!! $post->content !!}</p>
+                            <section class="hidden md:block">
+                                <p class="truncate line-clamp-2">{!! Str::limit($post->content, 30, '...') !!}</p>
+                            </section>
                         </div>
                         <img class="w-36" src="{{ asset('/storage/' . $post->cover) }}" alt="cover">
                     </section>
@@ -43,8 +45,11 @@
             <a href="/sort?tag=programming" class="p-2 text-sm text-center bg-gray-100 rounded-full">Programming</a>
             <a href="/sort?tag=Git" class="p-2 text-sm text-center bg-gray-100 rounded-full">Git</a>
         </div> --}}
-            @endforeach
-        </article>
+            </article>
+        @endforeach
+        @if ($posts->hasPages())
+            {{ $posts->links() }}
+        @endif
     @else
         <div class="justify-between 2xl:flex">
             <div class="p-5">

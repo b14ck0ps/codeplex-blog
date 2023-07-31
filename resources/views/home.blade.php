@@ -31,16 +31,17 @@
                     </section>
                 </a>
                 <a href="{{ route('blog.content', ['id' => $post->id]) }}">
-                    <section class="flex justify-between gap-5 mt-4 lg:gap-52">
+                    <section class="flex items-end justify-between gap-5 mt-4 lg:gap-52">
                         <div>
                             <h1 class="text-xl font-bold">{{ $post->title }}</h1>
                             <section class="hidden md:block">
-                                {!! Str::limit($post->content, 150) !!}
+                                <p class="truncate line-clamp-2">{!! Str::limit($post->content, 50) !!}</p>
                             </section>
 
                         </div>
                         <div class="h-24 overflow-hidden w-36">
-                            <img class="object-cover object-top h-full" src="{{ asset('/storage/' . $post->cover) }}" alt="cover">
+                            <img class="object-cover object-top h-full" src="{{ asset('/storage/' . $post->cover) }}"
+                                alt="cover">
                         </div>
                     </section>
 
@@ -64,6 +65,9 @@
                 </div> --}}
             </article>
         @endforeach
+        @if ($posts->hasPages())
+            {{ $posts->links() }}
+        @endif
     </main>
 @endsection
 

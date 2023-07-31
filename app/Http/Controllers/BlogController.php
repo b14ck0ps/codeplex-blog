@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BlogPost;
 use Illuminate\Support\Str;
 use App\Models\PostComments;
+use App\Models\PostLikes;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -12,18 +13,18 @@ class BlogController extends Controller
     function index(Request $request)
     {
 
-        $post = BlogPost::all()->sortByDesc('created_at');
+        $post = BlogPost::orderByDesc('created_at')->paginate(5);
         $selected = 'latest';
 
         if ($request->sortBy == 'oldest') {
-            $post = BlogPost::all()->sortBy('created_at');
+            $post = BlogPost::orderBy('created_at')->paginate(5);
             $selected = 'oldest';
         }
 
         if ($request->sortBy == 'likes') {
-            $post = BlogPost::all()->sortByDesc(function ($post) {
-                return $post->likes->count();
-            });
+            $post = BlogPost::orderByDesc(
+                PostLikes::whereColumn('blog_posts.id', 'blog_post_id')->selectRaw('count(*)')
+            )->paginate(5);
             $selected = 'likes';
         }
 

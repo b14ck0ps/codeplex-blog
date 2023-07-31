@@ -21,7 +21,9 @@
                     <section class="flex justify-between gap-5 mt-4 lg:gap-52">
                         <div>
                             <h1 class="font-bold">{{ $post->title }}</h1>
-                            <p class="hidden md:block">{!! $post->content !!}</p>
+                            <section class="hidden overflow-hidden md:block md:max-h-12">
+                                <p class="line-clamp-2">{!! Str::limit($post->content, 100, '...') !!}</p>
+                            </section>
                         </div>
                         <img class="w-36" src="{{ asset('/storage/' . $post->cover) }}" alt="cover">
                     </section>
@@ -43,5 +45,8 @@
                 </div> --}}
             </article>
         @endforeach
+        @if ($posts->hasPages())
+            {{ $posts->links() }}
+        @endif
     </main>
 @endsection

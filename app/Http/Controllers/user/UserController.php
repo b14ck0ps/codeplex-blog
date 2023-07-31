@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function dashboard()
     {
-        $posts = User::find(Auth::user()->id)->blogPosts()->orderBy('created_at', 'desc')->get();
+        $posts = User::find(Auth::user()->id)->blogPosts()->orderBy('created_at', 'desc')->paginate(5);
 
         return view('users.dashboard', [
             'title' => "Dashboard | " . Auth::user()->name,
@@ -27,7 +27,7 @@ class UserController extends Controller
     public function guestProfile(Request $request)
     {
         $user = User::where('username', $request->username)->firstOrFail();
-        $posts = $user->blogPosts()->orderBy('created_at', 'desc')->get();
+        $posts = $user->blogPosts()->orderBy('created_at', 'desc')->paginate(5);
 
         return view('users.guestProfile.guest_profile', [
             'title' => 'Guest Profile',
@@ -38,11 +38,10 @@ class UserController extends Controller
     public function guestProfileAbout(Request $request)
     {
         $user = User::where('username', $request->username)->firstOrFail();
-        $about = $user->about;
 
         return view('users.guestProfile.guest_profile_about', [
             'title' => 'About',
-            'user' => $user
+            'user' => $user,
         ]);
     }
 }
