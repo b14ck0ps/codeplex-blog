@@ -9,7 +9,8 @@
                             <div class="flex items-center gap-1">
                                 <div class="w-6 h-6 overflow-hidden rounded-full">
                                     <img class="object-cover object-center w-full h-full"
-                                        src="{{ asset('/storage/' . $user->profile_photo_path) }}" alt="User Profile Photo">
+                                        src="{{ Str::startsWith($post->user->profile_photo_path, 'http') ? $post->user->profile_photo_path : asset('/storage/' . $post->user->profile_photo_path) }}"
+                                        alt="User Profile Photo">
                                 </div>
                                 <p>{{ $user->name }}</p>
                             </div>
@@ -25,7 +26,11 @@
                                 <p class="line-clamp-2">{!! Str::limit($post->content, 100, '...') !!}</p>
                             </section>
                         </div>
-                        <img class="w-36" src="{{ asset('/storage/' . $post->cover) }}" alt="cover">
+                        <div class="h-24 overflow-hidden ml-full w-36">
+                            <img class="object-cover object-top"
+                                src="{{ Str::startsWith($post->cover, 'http') ? $post->cover : asset('/storage/' . $post->cover) }}"
+                                alt="cover">
+                            <div>
                     </section>
                     <section class="flex gap-5">
                         <div class="flex items-center gap-1">

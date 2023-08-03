@@ -19,7 +19,7 @@
                                 <div class="flex items-center gap-1">
                                     <div class="overflow-hidden rounded-full w-7 h-7">
                                         <img class="object-cover object-center w-full h-full"
-                                            src="{{ asset('/storage/' . $post->user->profile_photo_path) }}"
+                                            src="{{ Str::startsWith($post->user->profile_photo_path, 'http') ? $post->user->profile_photo_path : asset('/storage/' . $post->user->profile_photo_path) }}"
                                             alt="User Profile Photo">
                                     </div>
                                     <p>{{ $post->user->name }}</p>
@@ -37,8 +37,9 @@
                                 </section>
 
                             </div>
-                            <div class="h-24 overflow-hidden w-36">
-                                <img class="object-cover object-top h-full" src="{{ asset('/storage/' . $post->cover) }}"
+                            <div class="h-24 overflow-hidden ml-full w-36">
+                                <img class="object-cover object-top"
+                                    src="{{ Str::startsWith($post->cover, 'http') ? $post->cover : asset('/storage/' . $post->cover) }}"
                                     alt="cover">
                             </div>
                         </section>

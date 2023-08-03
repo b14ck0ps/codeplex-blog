@@ -5,7 +5,8 @@
         <a href="{{ route('guestProfile', ['username' => $post->user->username]) }}" class="flex items-center gap-3 mt-5">
             <div class="w-6 h-6 overflow-hidden rounded-full">
                 <img class="object-cover object-center w-full h-full"
-                    src="{{ asset('/storage/' . $post->user->profile_photo_path) }}" alt="User Profile Photo">
+                    src="{{ Str::startsWith($post->user->profile_photo_path, 'http') ? $post->user->profile_photo_path : asset('/storage/' . $post->user->profile_photo_path) }}"
+                    alt="User Profile Photo">
             </div>
             <p class="font-semibold">{{ $post->user->name }}</p>
         </a>
@@ -73,7 +74,7 @@
                     <div class="flex items-center gap-4">
                         <div class="inline-block w-8 h-8 overflow-hidden rounded-full">
                             <img class="object-cover object-center w-full h-full"
-                                src="{{ asset('/storage/' . $comment->user->profile_photo_path) }}"
+                                src="{{ Str::startsWith($comment->user->profile_photo_path, 'http') ? $comment->user->profile_photo_path : asset('/storage/' . $comment->user->profile_photo_path) }}"
                                 alt="User Profile Photo">
                         </div>
                         <div class="flex flex-col justify-center">

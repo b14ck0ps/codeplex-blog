@@ -27,7 +27,10 @@
                                 <p class="truncate line-clamp-2">{!! Str::limit($post->content, 30, '...') !!}</p>
                             </section>
                         </div>
-                        <img class="w-36" src="{{ asset('/storage/' . $post->cover) }}" alt="cover">
+                        <div class="h-24 overflow-hidden ml-full w-36">
+                            <img class="object-cover object-top" src="{{ asset('/storage/' . $post->cover) }}"
+                                alt="cover">
+                        </div>
                     </section>
                     <section class="flex gap-5">
                         <div class="flex items-center gap-1">
